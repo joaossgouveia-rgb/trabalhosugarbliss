@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugar Bliss - Loja de Snacks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Sugar Bliss</h1>
+        <p>Os snacks e doces mais famosos de 5 países</p>
+    </header>
+
+    <nav>
+        <a href="#produtos">Produtos</a>
+        <a href="#carrinho">Carrinho (<span id="contador">0</span>)</a>
+        <a href="#pagamento">Pagamento</a>
+        <a href="#sobre">Sobre nós</a>
+    </nav>
+
+ 
+    <section class="banner">
+        <h2>Adoce o seu dia!</h2>
+        <p>Use o cupom <strong>DOCE10</strong> e ganhe 10% de desconto. Entrega grátis em compras acima de R$ 60,00.</p>
+    </section>
+
+    <main>
+
+        <section id="produtos">
+            <h2>Nossos Snacks</h2>
+
+            <div class="abas">
+                <button class="aba ativo" onclick="mudarAba('eua', this)">Estados Unidos</button>
+                <button class="aba" onclick="mudarAba('china', this)">China</button>
+                <button class="aba" onclick="mudarAba('brasil', this)">Brasil</button>
+                <button class="aba" onclick="mudarAba('franca', this)">França</button>
+                <button class="aba" onclick="mudarAba('espanha', this)">Espanha</button>
+            </div>
+
+            <h3 id="titulo-aba"></h3>
+
+            <!-- Busca dentro da aba -->
+            <div class="filtros">
+                <input type="text" id="busca" placeholder="Buscar nesta aba..." oninput="filtrarProdutos()">
+            </div>
+
+            <!-- Os cards dos doces são criados pelo JavaScript -->
+            <div id="lista-produtos"></div>
+        </section>
+
+        <!-- CARRINHO -->
+        <section id="carrinho">
+            <h2>Seu Carrinho</h2>
+
+            <ul id="lista-carrinho"></ul>
+
+            <!-- Tipo de entrega -->
+            <div class="bloco">
+                <h3>Entrega</h3>
+                <label>
+                    <input type="radio" name="entrega" value="entrega" checked onchange="atualizarCarrinho()">
+                    Receber em casa (R$ 7,00 - grátis acima de R$ 60,00)
+                </label>
+                <label>
+                    <input type="radio" name="entrega" value="retirada" onchange="atualizarCarrinho()">
+                    Retirar na loja (grátis)
+                </label>
+            </div>
+
+            <!-- Cupom -->
+            <div class="bloco">
+                <h3>Cupom de desconto</h3>
+                <input type="text" id="cupom" placeholder="Digite o cupom">
+                <button onclick="aplicarCupom()">Aplicar</button>
+                <p id="mensagem-cupom"></p>
+            </div>
+
+            <!-- Resumo -->
+            <div class="bloco resumo">
+                <p>Subtotal: <span id="subtotal">R$ 0,00</span></p>
+                <p>Desconto: <span id="desconto">R$ 0,00</span></p>
+                <p>Frete: <span id="frete">R$ 0,00</span></p>
+                <p class="total">Total: <span id="total">R$ 0,00</span></p>
+            </div>
+
+            <button class="limpar" onclick="limparCarrinho()">Limpar carrinho</button>
+        </section>
+
+        <!-- PAGAMENTO -->
+        <section id="pagamento">
+            <h2>Pagamento</h2>
+
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome">
+
+            <label for="telefone">Telefone (com DDD):</label>
+            <input type="text" id="telefone" placeholder="83999999999" maxlength="11">
+
+            <!-- Só aparece se escolher entrega -->
+            <div id="campo-endereco">
+                <label for="endereco">Endereço de entrega:</label>
+                <input type="text" id="endereco" placeholder="Rua, número, bairro">
+            </div>
+
+            <label for="forma">Forma de pagamento:</label>
+            <select id="forma" onchange="mostrarCampos()">
+                <option value="">Selecione</option>
+                <option value="pix">Pix</option>
+                <option value="cartao">Cartão de crédito</option>
+                <option value="dinheiro">Dinheiro</option>
+            </select>
+
+            <!-- Pix -->
+            <div id="campo-pix" class="escondido">
+                <p>Chave Pix (e-mail): doces@docesabor.com</p>
+                <p>Envie o comprovante pelo WhatsApp após o pagamento.</p>
+            </div>
+
+            <!-- Cartão -->
+            <div id="campo-cartao" class="escondido">
+                <label for="numero-cartao">Número do cartão:</label>
+                <input type="text" id="numero-cartao" placeholder="0000000000000000" maxlength="16">
+
+                <label for="validade">Validade (MM/AA):</label>
+                <input type="text" id="validade" placeholder="12/28" maxlength="5">
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" placeholder="123" maxlength="3">
+
+                <label for="parcelas">Parcelas:</label>
+                <select id="parcelas"></select>
+            </div>
+
+            <!-- Dinheiro -->
+            <div id="campo-dinheiro" class="escondido">
+                <label for="troco">Troco para quanto? (opcional)</label>
+                <input type="number" id="troco" placeholder="Ex: 100">
+            </div>
+
+            <button onclick="finalizarCompra()">Finalizar compra</button>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="sobre">
+            <h2>Sobre nós</h2>
+            <div class="info">
+                <div class="bloco">
+                    <h3>Quem somos</h3>
+                    <p>A Doces do Mundo vende snacks e doces industrializados famosos de cinco países: Estados Unidos, China, Brasil, França e Espanha.</p>
+                </div>
+                <div class="bloco">
+                    <h3>Horário</h3>
+                    <p>Segunda a sábado, das 9h às 18h.</p>
+                </div>
+                <div class="bloco">
+                    <h3>Contato</h3>
+                    <p>WhatsApp: (83) 99999-9999</p>
+                    <p>E-mail: doces@docesabor.com</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Doces do Mundo &copy; 2026 - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Aviso rápido quando adiciona um doce -->
+    <div id="aviso"></div>
+
+    <!-- Janela de confirmação do pedido -->
+    <div id="modal" class="escondido">
+        <div class="modal-conteudo">
+            <h2>Pedido realizado!</h2>
+            <p id="modal-mensagem"></p>
+            <ul id="modal-itens"></ul>
+            <p id="modal-total"></p>
+            <button onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

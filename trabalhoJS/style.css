@@ -1,0 +1,336 @@
+/* Variáveis de cor (podem ser usadas no CSS inteiro) */
+:root {
+    --rosa: #e75480;
+    --rosa-escuro: #c2185b;
+    --fundo: #fff5f8;
+    --cinza: #888;
+}
+
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--fundo);
+    color: #333;
+}
+
+/* Cabeçalho */
+header {
+    background-color: var(--rosa);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Menu fixo no topo */
+nav {
+    background-color: var(--rosa-escuro);
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Banner */
+.banner {
+    background-color: #ffd6e5;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.banner h2 {
+    color: var(--rosa-escuro);
+    margin-top: 0;
+}
+
+/* Conteúdo principal */
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    color: var(--rosa-escuro);
+}
+
+main h2 {
+    border-bottom: 2px solid var(--rosa);
+    padding-bottom: 5px;
+}
+
+/* Busca e filtros */
+.filtros {
+    margin-bottom: 20px;
+}
+
+#busca {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Abas dos países */
+.abas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-bottom: 2px solid var(--rosa);
+}
+
+.aba {
+    background-color: white;
+    color: var(--rosa-escuro);
+    border: 1px solid var(--rosa);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+.aba.ativo {
+    background-color: var(--rosa);
+    color: white;
+}
+
+#titulo-aba {
+    color: var(--rosa-escuro);
+}
+
+/* Lista de produtos (grid) */
+#lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.produto {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.produto img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.produto:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.preco {
+    font-weight: bold;
+    color: var(--rosa-escuro);
+}
+
+/* Botões */
+button {
+    background-color: var(--rosa);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--rosa-escuro);
+}
+
+.limpar {
+    background-color: var(--cinza);
+}
+
+/* Blocos (caixas brancas) */
+.bloco {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.bloco h3 {
+    margin-top: 0;
+}
+
+.bloco label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Carrinho */
+#lista-carrinho {
+    list-style: none;
+    padding: 0;
+}
+
+.item-carrinho {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.item-nome {
+    flex: 1;
+}
+
+.controle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini {
+    padding: 4px 10px;
+}
+
+.remover {
+    background-color: var(--cinza);
+    padding: 4px 10px;
+}
+
+.resumo p {
+    margin: 5px 0;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#mensagem-cupom {
+    font-weight: bold;
+}
+
+/* Formulário de pagamento */
+#pagamento label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#pagamento input,
+#pagamento select {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#pagamento button {
+    margin-top: 10px;
+}
+
+/* Sobre nós */
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.info .bloco {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Aviso rápido */
+#aviso {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--rosa-escuro);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Janela de confirmação (modal) */
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.modal-conteudo {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-conteudo ul {
+    text-align: left;
+}
+
+/* Classe usada pelo JavaScript para esconder elementos
+   (vem depois do #modal para ter prioridade) */
+.escondido {
+    display: none !important;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--rosa-escuro);
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    main {
+        width: 94%;
+        padding: 10px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 8px;
+    }
+
+    .item-carrinho {
+        flex-wrap: wrap;
+    }
+}
